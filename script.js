@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [],
+            labels: [], 
             datasets: [{
                 label: 'Graph Plot',
-                data: [],
+                data: [], 
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderWidth: 1,
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const xValues = [];
             const yValues = [];
             for (let x = -10; x <= 10; x += 0.1) {
-                const y = eval(funcInput.replace(/x/g, `(${x})`));
+                const y = eval(funcInput.replace(/x/g, `(${x})`).replace(/\^/g, '**'));
                 xValues.push(x);
                 yValues.push(y);
             }
@@ -50,4 +50,16 @@ document.addEventListener('DOMContentLoaded', function () {
         myChart.data.datasets[0].data = yValues.map((y, index) => ({x: xValues[index], y: y}));
         myChart.update();
     }
+
+    window.addToInput = function(value) {
+        const funcInput = document.getElementById('functionInput');
+        funcInput.value += value;
+        funcInput.focus();
+    };
+
+    window.clearInput = function() {
+        const funcInput = document.getElementById('functionInput');
+        funcInput.value = '';
+        funcInput.focus();
+    };
 });

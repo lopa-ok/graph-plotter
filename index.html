@@ -5,11 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graph Plotter</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .keyboard {
+            display: flex;
+            flex-wrap: wrap;
+            width: 75%;
+            margin: 10px auto;
+            justify-content: center;
+        }
+        .key {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            text-align: center;
+            width: 50px;
+        }
+        .key.wide {
+            width: 110px;
+        }
+    </style>
 </head>
 <body>
     <div style="width: 75%; margin: auto; text-align: center;">
         <input type="text" id="functionInput" placeholder="Enter a function of x (e.g., x^2)" style="width: 60%; padding: 8px; margin: 10px 0;">
         <button onclick="plotFunction()" style="padding: 8px;">Plot Function</button>
+        <div class="keyboard">
+            <div class="key" onclick="addToInput('x')">x</div>
+            <div class="key" onclick="addToInput('^')">^</div>
+            <div class="key" onclick="addToInput('sqrt(')">√</div>
+            <div class="key" onclick="addToInput('+')">+</div>
+            <div class="key" onclick="addToInput('-')">-</div>
+            <div class="key" onclick="addToInput('*')">*</div>
+            <div class="key" onclick="addToInput('/')">/</div>
+            <div class="key" onclick="addToInput('(')">(</div>
+            <div class="key" onclick="addToInput(')')">)</div>
+            <div class="key" onclick="addToInput('Math.sin(')">sin</div>
+            <div class="key" onclick="addToInput('Math.cos(')">cos</div>
+            <div class="key" onclick="addToInput('Math.tan(')">tan</div>
+            <div class="key wide" onclick="clearInput()">Clear</div>
+        </div>
         <canvas id="myChart"></canvas>
     </div>
     <script src="script.js"></script>
