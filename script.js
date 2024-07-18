@@ -77,12 +77,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const funcInput = document.getElementById('functionInput').value;
         const display = document.getElementById('functionDisplay');
         try {
-            const latexInput = funcInput
-                .replace(/\^/g, '^{')
+
+            let latexInput = funcInput
+                .replace(/(\d)\^(\d+)/g, '$1^{ $2 }')
+                .replace(/(\d)\^(\w+)/g, '$1^{ $2 }')
                 .replace(/sqrt\(/g, '\\sqrt{')
-                .replace(/([a-zA-Z0-9]+)\(/g, '$1{')
                 .replace(/\)/g, '}')
-                .replace(/([a-zA-Z0-9]+)\^([a-zA-Z0-9]+)/g, '$1^{($2)}')
+                .replace(/([a-zA-Z0-9]+)\(/g, '$1{')
+                .replace(/\^([^\d])/g, '^{ $1}')
                 .replace(/\{/g, '\\{')
                 .replace(/\}/g, '\\}');
 
